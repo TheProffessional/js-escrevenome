@@ -1,41 +1,38 @@
-let cor;
-let posicaoHorizontal; // x
-let posicaoVertical; // y
+let palavra;
 
 function setup() {
   createCanvas(400, 400);
-   background(color(100,0,0));
-  cor = color(random(0,255), random(0,255), random(0,255));
-  posicaoHorizontal = 200;
-  posicaoVertical = 200;
+
+  palavra = palavraAleatoria();
 }
 
+function palavraAleatoria(){
+  let palavras = ["Dont Talk", "About", "Figh Club"];
+  palavra = random(palavras);
+  return random(palavras);
+}
 
+function inicializacores(){
+  background("white");
+  fill("black");
+  textSize(34);
+  textAlign(CENTER, CENTER)
+}
+function palavraParcial(minimo, maximo){
+  let quantidade = map(mouseX,minimo,maximo, 1, palavra.length);
+  let parcial = palavra.substring(0,quantidade);
+  return parcial;
+}
 function draw() {
-  
-  fill(cor);
-  circle(posicaoHorizontal,posicaoVertical,50);
+  inicializacores()
  
-  
-  
-  if (mouseX < posicaoHorizontal){
-    posicaoHorizontal =  posicaoHorizontal - 1;
-  }
-  
-  if (mouseX > posicaoHorizontal){
-    posicaoHorizontal =  posicaoHorizontal + 1;
-  }
-  
-  if (mouseY < posicaoVertical){
-    posicaoVertical--;
-  }
-    
-  if (mouseY > posicaoVertical){
-    posicaoVertical++;
-  }
-  
-  if (mouseIsPressed){
-    cor = color(random(0,255), random(0,255), random(0,255), random(0,100));
-  }
-    
-}
+// quando a posição do mouse atingir determinada posição a palavra completa ira aparecer
+
+  let maximo = width;
+let minimo = 0;
+let texto = palavraParcial(0, width);
+text(texto, 200, 200);
+
+//  } 
+ }
+
